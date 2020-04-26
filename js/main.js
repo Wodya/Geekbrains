@@ -25,6 +25,7 @@ class ProductList {
       block.insertAdjacentHTML('beforeend', productObject.render());
     }
   }
+  getTotalSum = () => this.allProducts.reduce((acc,item) => acc + item.price, 0);
 }
 
 class ProductItem {
@@ -46,7 +47,66 @@ class ProductItem {
             </div>`;
   }
 }
-new ProductList();
+
+class Basket{
+  constructor(productList, container=".basket") {
+    this.container = container;
+    this.items = [];
+    productList.forEach(p => this.add(p));
+    this._render()
+  }
+  add(productItem, quantity = 1){
+    let item = this.items.find(p => p.id === productItem.id);
+    if(item === undefined){
+      item = new BasketItem(productItem, 1);
+      this.items.push(item);
+    } else {
+      item.quantity += quantity;
+      let element = document.querySelector(`[data-id="${item.id}"]`)
+      element.insertAdjacentHTML("beforebegin",item.render());
+      element.parentNode.removeChild(element);
+    }
+  }
+  delete(productId) {
+    let itemIndex = this.items.findIndex(p => p.id === productId);
+    if (itemIndex >= 0) {
+      delete this.items[itemIndex];
+      let element = document.querySelector(`[data-id="${productId}"]`)
+      element.parentNode.removeChild(element);
+    }
+
+  }
+  getTotalSum = () => this.items.reduce((acc,item) => acc + item.price, 0);
+
+  _render(){
+    const block = document.querySelector(this.container);
+    this.items.forEach(p => block.insertAdjacentHTML('beforeend', p.render()));
+  }
+}
+
+class BasketItem {
+  constructor(productItem, quantity) {
+    this.title = productItem.title;
+    this.price = productItem.price;
+    this.id = productItem.id;
+    this.img = productItem.img;
+    this.quantity = quantity;
+  }
+
+  render = () => `<div class="basket-item" data-id="${this.id}">
+            <p class="basket__name">${this.title}</p>
+            <p class="basket__price">${this.price} \u20bd</p>
+            <p class="basket__quantity">${this.quantity}</p>
+            <p class="basket__sum">${this.quantity * this.price} </p>
+        </div>`;
+}
+
+let products = new ProductList();
+let basket = new Basket(products.allProducts.slice(0,3));
+basket.delete(3);
+basket.add(products.allProducts[0],3);
+console.log(`Total sum = ${products.getTotalSum()}`);
+
 // const products = [
 //   {id: 1, title: 'Notebook', price: 20000},
 //   {id: 2, title: 'Mouse', price: 1500},

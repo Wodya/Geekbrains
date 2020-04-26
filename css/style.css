@@ -75,3 +75,27 @@ img {
     border-color: #2f2a2d;
     color: #2f2a2d;
 }
+.basket{
+    width: 600px;
+}
+.basket-item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+}
+.basket__name{
+    font-size: 20px;
+    width: 200px;
+}
+.basket__price{
+    font-size: 16px;
+    font-style: italic;
+}
+.basket__quantity{
+    font-size: 16px;
+}
+.basket__sum{
+    font-size: 20px;
+    font-weight: bold;
+}
