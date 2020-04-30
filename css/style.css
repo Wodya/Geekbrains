@@ -33,6 +33,9 @@ button{
 .btn-cart, .logo{
     align-self: center;
 }
+.btn-cart:hover + .basket {
+	display: block;
+}
 .products{
     column-gap: 30px;
     display: grid;
@@ -74,4 +77,48 @@ img {
     background-color: transparent;
     border-color: #2f2a2d;
     color: #2f2a2d;
+}
+.cart{
+	position: relative;
+}
+.basket{
+	display: none;
+	width: 400px;
+	position: absolute;
+	background-color: #8b8686;
+	color: black;
+	left: -300px;
+	top: 10px;
+	border: solid 1px black;
+	border-radius: 5px;
+	min-height: 50px;
+}
+.basket:hover{
+	display: block;
+}
+
+.basket-item{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 20px;
+}
+.basket__name{
+	font-size: 20px;
+	width: 30%;
+}
+.basket__price{
+	font-size: 16px;
+	font-style: italic;
+}
+.basket__quantity{
+	font-size: 16px;
+}
+.basket__sum{
+	font-size: 20px;
+	font-weight: bold;
+}
+.basket_trash{
+	border: none;
+	background-color: transparent;
 }
