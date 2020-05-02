@@ -45,6 +45,7 @@
 }
 .feedback__error{
     border: solid 1px red;
+		border-radius: 5px;
     padding: 20px;
     width: 466px;
     display: none;
