@@ -49,6 +49,6 @@ const app = new Vue({
                     this.products.push(el);
                 }
             });
-			this.getJson(`${API + this.cartUrl}`).then(data => this.cartProducts = [...data.contents]);
+			this.getJson(`${API + this.cartUrl}`).then(data => this.cartProducts = data.contents);
 		}
 });
