@@ -20,7 +20,7 @@ Vue.component('error',{
 	mounted(){
 	},
 	template: `
-		<div v-if="viewError" class="error">
+		<div v-show="viewError" class="error">
 		<p>{{ errorStr }}</p>
 		</div>
 	`
