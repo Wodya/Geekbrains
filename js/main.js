@@ -7,10 +7,12 @@ const app = new Vue({
     },
     methods: {
         getJson(url){
+			this.$refs.error.hideError();
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
                     console.log(error);
+					this.$refs.error.showError("Ошибка получения данных с сервера");
                 })
         },
     },
