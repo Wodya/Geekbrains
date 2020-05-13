@@ -9,7 +9,7 @@ Vue.component('cart', {
     },
     methods: {
         addProduct(product) {
-            this.$parent.getJson(`${API}/addToBasket.json`)
+            this.$parent.getJson(`${API}/addToBasket.json1`)
                 .then(data => {
                     if (data.result === 1) {
                         let find = this.cartItems.find(el => el.id_product === product.id_product);
